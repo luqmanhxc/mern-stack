@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 
 const WorkoutForm = () => {
+    const { dispatch } = useWorkoutsContext();
+
     const [title, setTitle] = useState('');
     const [load, setLoad] = useState('');
     const [reps, setReps] = useState('');
+
     const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
@@ -29,6 +33,7 @@ const WorkoutForm = () => {
                 setReps('');
                 setError(null);
                 console.log('New workout added', response.data);
+                dispatch({ type: 'CREATE_WORKOUT', payload: response.data });
             }
         } catch (err) {
             setError(err.response.data.error);
