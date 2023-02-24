@@ -39,7 +39,6 @@ const WorkoutForm = () => {
         } catch (err) {
             setError(err.response.data.error);
             setEmptyFields(err.response.data.emptyFields);
-            // console.log(err.response.data.emptyFields);
         }
     };
 
