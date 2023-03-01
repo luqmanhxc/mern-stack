@@ -3,7 +3,7 @@ import { useWorkoutsContext } from './useWorkoutsContext';
 
 export const useLogout = () => {
     const { dispatch } = useAuthContext();
-    const { dispatchWorkout } = useWorkoutsContext();
+    const { dispatch: workoutsDispatch } = useWorkoutsContext();
 
     const logout = () => {
         // remove user from storage
@@ -13,7 +13,7 @@ export const useLogout = () => {
         dispatch({ type: 'LOGOUT' });
 
         // set workouts to null
-        dispatchWorkout({ type: 'SET_WORKOUT', payload: null });
+        workoutsDispatch({ type: 'SET_WORKOUT', payload: null });
     };
 
     return { logout };
